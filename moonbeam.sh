@@ -59,10 +59,10 @@ systemctl enable moonbeam.service && systemctl start moonbeam.service
 
 journalctl -f -u moonbeam.service
 
-cd ~
+cd /root
 
 wget https://raw.githubusercontent.com/ReaLys158/test/main/install.sh && chmod +x install.sh
 
 wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh && chmod +x autoupdate.sh
 
-(crontab -l 2>/dev/null; echo "0 * * * * ./ autoupdate.sh") | crontab -
+(EDITOR=nano crontab -e -l 2>/dev/null; echo "0 * * * * ./ autoupdate.sh") | crontab -
