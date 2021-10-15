@@ -57,8 +57,6 @@ EOF
 
 systemctl enable moonbeam.service && systemctl start moonbeam.service
 
-sleep 5
-
 cd /root
 
 wget https://raw.githubusercontent.com/ReaLys158/test/main/install.sh && chmod +x install.sh
@@ -67,6 +65,8 @@ wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh && chmo
 
 (EDITOR=nano crontab -e -l 2>/dev/null; echo "*/60 * * * * ./autoupdate.sh") | crontab -
 
-echo "$(journalctl -u moonbeam.service --since "5 minutes ago" --until "now" --no-pager)"
-
 systemctl stop moonbeam.service && tar -cvzf alphanet-data.tar.gz /var/lib/alphanet-data &&  systemctl start moonbeam.service 
+
+sleep 5
+
+echo "$(journalctl -u moonbeam.service --since "5 minutes ago" --until "now" --no-pager)"
