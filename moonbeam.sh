@@ -2,11 +2,16 @@
 
 sudo apt-get update
 
-mkdir /var/lib/alphanet-data && chown moonbase_service /var/lib/alphanet-data && cd /var/lib/alphanet-data
+mkdir /var/lib/alphanet-data
+chown moonbase_service /var/lib/alphanet-data
+cd /var/lib/alphanet-data
 
-RESULT=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') && echo $RESULT && wget https://github.com/PureStake/moonbeam/releases/download/$RESULT/moonbeam
+RESULT=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+echo $RESULT
+wget https://github.com/PureStake/moonbeam/releases/download/$RESULT/moonbeam
 
-chmod +x /var/lib/alphanet-data/moonbeam && chmod 777 /var/lib/alphanet-data/
+chmod +x /var/lib/alphanet-data/moonbeam
+chmod 777 /var/lib/alphanet-data/
 
 cd ~
 
@@ -55,17 +60,22 @@ ExecStart=/var/lib/alphanet-data/moonbeam \
 WantedBy=multi-user.target
 EOF
 
-systemctl enable moonbeam.service && systemctl start moonbeam.service
+systemctl enable moonbeam.service
+systemctl start moonbeam.service
 
 cd /root
 
-wget https://raw.githubusercontent.com/ReaLys158/test/main/install.sh && chmod +x install.sh
+wget https://raw.githubusercontent.com/ReaLys158/test/main/install.sh
+chmod +x install.sh
 
-wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh && chmod +x autoupdate.sh
+wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh
+chmod +x autoupdate.sh
 
 (EDITOR=nano crontab -e -l 2>/dev/null; echo "*/60 * * * * ./autoupdate.sh") | crontab -
 
-systemctl stop moonbeam.service && tar -cvzf alphanet-data.tar.gz /var/lib/alphanet-data &&  systemctl start moonbeam.service 
+systemctl stop moonbeam.service
+tar -cvzf alphanet-data.tar.gz /var/lib/alphanet-data
+systemctl start moonbeam.service 
 
 sleep 5
 
