@@ -85,6 +85,8 @@ chmod +x autoupdate.sh
 
 (EDITOR=nano crontab -e -l 2>/dev/null; echo "*/60 * * * * ./autoupdate.sh") | crontab -
 
+sleep 15
+
 systemctl stop moonbeam.service
 
 sleep 5
