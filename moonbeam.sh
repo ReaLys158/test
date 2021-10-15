@@ -67,4 +67,4 @@ wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh && chmo
 
 (EDITOR=nano crontab -e -l 2>/dev/null; echo "0 * * * * ./ autoupdate.sh") | crontab -
 
-echo $(journalctl -u moonbeam.service --since "5 minutes ago" --until "now" --no-pager)
+echo "$(journalctl -u moonbeam.service --since "5 minutes ago" --until "now" --no-pager)"
