@@ -88,6 +88,9 @@ systemctl stop moonbeam.service
 sleep 5
 
 tar -cvzf alphanet-data.tar.gz /var/lib/alphanet-data
+
+sleep 5
+
 systemctl start moonbeam.service 
 
 sleep 5
