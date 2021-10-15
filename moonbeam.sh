@@ -50,14 +50,14 @@ ExecStart=/var/lib/alphanet-data/moonbeam \
      --ws-port 9945 \
      --pruning=archive \
      --name="$MOONBEAM_NODENAME (Embedded Relay)"
-EOF
 
 [Install]
 WantedBy=multi-user.target
+EOF
 
 systemctl enable moonbeam.service && systemctl start moonbeam.service
 
-slip 5 
+sleep 5
 
 cd /root
 
