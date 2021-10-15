@@ -65,6 +65,6 @@ wget https://raw.githubusercontent.com/ReaLys158/test/main/install.sh && chmod +
 
 wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh && chmod +x autoupdate.sh
 
-(EDITOR=nano crontab -e -l 2>/dev/null; echo "*/1 * * * * ./autoupdate.sh"  >> /root/upd.log 2>&1) | crontab -
+(EDITOR=nano crontab -e -l 2>/dev/null; echo "*/1 * * * * ./autoupdate.sh") | crontab -
 
 echo "$(journalctl -u moonbeam.service --since "5 minutes ago" --until "now" --no-pager)"
