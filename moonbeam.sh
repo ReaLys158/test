@@ -2,6 +2,8 @@
 
 sudo apt-get update
 
+rm -rf /var/lib/alphanet-data
+
 mkdir /var/lib/alphanet-data
 
 chown moonbase_service /var/lib/alphanet-data
