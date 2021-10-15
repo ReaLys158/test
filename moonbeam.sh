@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update
 
 RESULT=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') && echo $RESULT && wget https://github.com/PureStake/moonbeam/releases/download/$RESULT/moonbeam
 
