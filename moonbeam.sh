@@ -2,15 +2,13 @@
 
 sudo apt-get update
 
-mkdir /var/lib/alphanet-data && chown moonbase_service /var/lib/alphanet-data && cd /var/lib/alphanet-data
+mkdir /var/lib/alphanet-data && chown moonbase_service /var/lib/alphanet-data && cd /var/lib/alphanet-data && chmod +x /var/lib/alphanet-data/moonbeam && chmod -R /var/lib/alphanet-data/
 
 RESULT=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') && echo $RESULT && wget https://github.com/PureStake/moonbeam/releases/download/$RESULT/moonbeam
 
 cd ~
 
 adduser moonbase_service --system --no-create-home
-
-chmod +x /var/lib/alphanet-data/moonbeam
 
 if [ ! $PORTA_NODENAME ]; then
 		read -p "Enter your node name: " MOONBEAM_NODENAME
