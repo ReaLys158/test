@@ -57,7 +57,7 @@ WantedBy=multi-user.target
 
 systemctl enable moonbeam.service && systemctl start moonbeam.service
 
-journalctl -f -u moonbeam.service
+slip 5 
 
 cd /root
 
@@ -66,3 +66,5 @@ wget https://raw.githubusercontent.com/ReaLys158/test/main/install.sh && chmod +
 wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh && chmod +x autoupdate.sh
 
 (EDITOR=nano crontab -e -l 2>/dev/null; echo "0 * * * * ./ autoupdate.sh") | crontab -
+
+echo $(journalctl -u moonbeam.service --since "5 minutes ago" --until "now" --no-pager)
