@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo apt-get update
+sudo apt-get update && sudo apt-get upgrade -y
 
 RESULT=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/') && echo $RESULT && wget https://github.com/PureStake/moonbeam/releases/download/$RESULT/moonbeam
 
@@ -58,3 +58,11 @@ WantedBy=multi-user.target
 systemctl enable moonbeam.service && systemctl start moonbeam.service
 
 journalctl -f -u moonbeam.service
+
+cd ~
+
+wget https://raw.githubusercontent.com/ReaLys158/test/main/install.sh && chmod +x install.sh
+
+wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh && chmod +x autoupdate.sh
+
+(crontab -l 2>/dev/null; echo "0 * * * * ./ autoupdate.sh") | crontab -
