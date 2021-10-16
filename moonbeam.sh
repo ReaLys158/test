@@ -36,6 +36,8 @@ if [ ! $MOONBEAM_NODENAME ]; then
 	fi
 	echo -e '\n\e[42mYour node name:' $MOONBEAM_NODENAME '\e[0m\n'
 	. $HOME/.bash_profile
+	
+sleep 5
 
 sudo tee <<EOF >/dev/null /etc/systemd/system/moonbeam.service
 [Unit]
