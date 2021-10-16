@@ -101,4 +101,6 @@ systemctl start moonbeam.service
 
 sleep 5
 
-echo "$(journalctl -u moonbeam.service > /root/tut.log --since "5 minutes ago" --until "now" --no-pager)"
+journalctl -u moonbeam.service > /root/tut.log --since "1970-01-01" -n 30 --no-pager
+
+cat tut.log
