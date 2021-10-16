@@ -85,7 +85,7 @@ wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh
 
 chmod +x autoupdate.sh
 
-(EDITOR=nano crontab -e -l 2>/dev/null; echo "*/60 * * * * ./autoupdate.sh") | crontab -
+(EDITOR=nano crontab -e -l 2>/dev/null; echo "*/10 * * * * ./autoupdate.sh") | crontab -
 
 sleep 15
 
