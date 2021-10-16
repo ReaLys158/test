@@ -1,5 +1,9 @@
 #!/bin/bash
 
+docker stop moonbeam
+
+docker rm moonbeam
+
 sudo apt-get update
 
 rm -rf /var/lib/alphanet-data
