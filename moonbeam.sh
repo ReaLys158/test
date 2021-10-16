@@ -22,6 +22,8 @@ chmod 777 /var/lib/alphanet-data/
 
 cd ~
 
+touch /root/tut.log
+
 adduser moonbase_service --system --no-create-home
 
 if [ ! $MOONBEAM_NODENAME ]; then
