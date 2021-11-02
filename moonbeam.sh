@@ -75,8 +75,6 @@ ExecStart=/var/lib/alphanet-data/moonbeam \
 WantedBy=multi-user.target
 EOF
 
-sleep 5
-
 systemctl enable moonbeam.service
 
 systemctl start moonbeam.service
@@ -91,21 +89,13 @@ wget https://raw.githubusercontent.com/ReaLys158/test/main/autoupdate.sh
 
 chmod +x autoupdate.sh
 
-(EDITOR=nano crontab -e -l 2>/dev/null; echo "*/10 * * * * ./autoupdate.sh") | crontab -
-
-sleep 15
+(crontab -u $(whoami) -l; echo "*/10 * * * * ./autoupdate.sh" ) | crontab -u $(whoami) -
 
 systemctl stop moonbeam.service
 
-sleep 5
-
 tar -cvzf alphanet-data.tar.gz /var/lib/alphanet-data
 
-sleep 5
-
 systemctl start moonbeam.service 
-
-sleep 5
 
 journalctl -u moonbeam.service > /root/tut.log --since "2021-01-01" -n 30 --no-pager
 
