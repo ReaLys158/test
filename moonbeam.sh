@@ -16,6 +16,8 @@ chown moonbase_service /var/lib/alphanet-data
 
 cd /var/lib/alphanet-data
 
+sudo apt install jq
+
 ALL_VERSIONS=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases" | jq -r ".[].tag_name")
 RESULT=""
 for v in $ALL_VERSIONS
