@@ -24,6 +24,6 @@ cd ~
 systemctl enable moonbeam.service
 systemctl start moonbeam.service
 echo -n > tut.log
-journalctl -u moonbeam.service > /root/tut.log --since "2021-01-01" -n 30 --no-pager
+journalctl -u moonbeam.service --since "2021-01-01" -n 30 --no-pager > ~/tut.log
 
 echo "done"
