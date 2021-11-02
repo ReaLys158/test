@@ -8,8 +8,6 @@ docker rm moonbeam
 
 sudo apt-get update
 
-rm moonbeam.sh
-
 rm install.sh
 
 rm autoupdate.sh
