@@ -6,7 +6,17 @@ systemctl stop moonbeam.service
 cd /var/lib/alphanet-data/
 rm -f moonbeam
 
-VERSION=$(curl -s 'https://api.github.com/repos/PureStake/moonbeam/releases/latest' | jq -r ".tag_name")
+ALL_VERSIONS=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases" | jq -r ".[].tag_name")
+VERSION=""
+for v in $ALL_VERSIONS
+do
+    if [[ $v =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+    then
+        VERSION=$v
+        break
+    fi
+done
+
 wget https://github.com/PureStake/moonbeam/releases/download/$VERSION/moonbeam
 chmod +x /var/lib/alphanet-data/moonbeam
 
