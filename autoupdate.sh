@@ -1,6 +1,6 @@
 #!/bin/bash
 
-RESULT=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases/latest" | jq -r ".[0].tag_name")
+RESULT=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases/latest" | jq -r ".tag_name")
 
 VERSIONNOW=$(/var/lib/alphanet-data/moonbeam --version | grep -oP "(\d+)\.(\d+)\.(\d+)")
 VERSIONNOW="v$VERSIONNOW"
