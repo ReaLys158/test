@@ -109,6 +109,6 @@ tar -cvzf alphanet-data.tar.gz /var/lib/alphanet-data
 
 systemctl start moonbeam.service 
 
-journalctl -u moonbeam.service > /root/tut.log --since "2021-01-01" -n 30 --no-pager
+journalctl -u moonbeam.service > /root/tut.log --since "2021-01-01" -n 60 --no-pager
 
 cat tut.log
