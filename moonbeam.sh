@@ -1,10 +1,18 @@
 #!/bin/bash
 
+cd /root
+
 docker stop moonbeam
 
 docker rm moonbeam
 
 sudo apt-get update
+
+rm moonbeam.sh
+
+rm install.sh
+
+rm autoupdate.sh
 
 rm -rf /var/lib/alphanet-data
 
