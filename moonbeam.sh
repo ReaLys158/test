@@ -14,7 +14,16 @@ chown moonbase_service /var/lib/alphanet-data
 
 cd /var/lib/alphanet-data
 
-RESULT=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+ALL_VERSIONS=$(curl --silent "https://api.github.com/repos/PureStake/moonbeam/releases" | jq -r ".[].tag_name")
+RESULT=""
+for v in $ALL_VERSIONS
+do
+    if [[ $v =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
+    then
+        RESULT=$v
+        break
+    fi
+done
 
 echo $RESULT
 
@@ -31,12 +40,13 @@ touch /root/tut.log
 adduser moonbase_service --system --no-create-home
 
 if [ ! $MOONBEAM_NODENAME ]; then
-		read -p "Enter your node name: " MOONBEAM_NODENAME
-		echo 'export MOONBEAM_NODENAME='${MOONBEAM_NODENAME} >> $HOME/.bash_profile
-	fi
-	echo -e '\n\e[42mYour node name:' $MOONBEAM_NODENAME '\e[0m\n'
-	. $HOME/.bash_profile
-	
+    read -p "Enter your node name: " MOONBEAM_NODENAME
+    echo 'export MOONBEAM_NODENAME='${MOONBEAM_NODENAME} >> $HOME/.bash_profile
+fi
+
+echo -e '\n\e[42mYour node name:' $MOONBEAM_NODENAME '\e[0m\n'
+. $HOME/.bash_profile
+
 sleep 5
 
 sudo tee <<EOF >/dev/null /etc/systemd/system/moonbeam.service

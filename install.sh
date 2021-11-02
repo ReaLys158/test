@@ -4,19 +4,9 @@ echo "installing"
 
 systemctl stop moonbeam.service
 cd /var/lib/alphanet-data/
-rm -rf moonbeam
+rm -f moonbeam
 
-ALL_VERSIONS=$(curl -s 'https://api.github.com/repos/PureStake/moonbeam/releases' | jq -r ".[].tag_name")
-VERSION=""
-for v in $ALL_VERSIONS
-do
-    if [[ $v =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]
-    then
-        VERSION=$v
-        break
-    fi
-done
-
+VERSION=$(curl -s 'https://api.github.com/repos/PureStake/moonbeam/releases/latest' | jq -r ".tag_name")
 wget https://github.com/PureStake/moonbeam/releases/download/$VERSION/moonbeam
 chmod +x /var/lib/alphanet-data/moonbeam
 
