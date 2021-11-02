@@ -10,6 +10,8 @@ rm -rf /var/lib/alphanet-data
 
 mkdir /var/lib/alphanet-data
 
+adduser moonbase_service --system --no-create-home
+
 chown moonbase_service /var/lib/alphanet-data
 
 cd /var/lib/alphanet-data
@@ -36,8 +38,6 @@ chmod 777 /var/lib/alphanet-data/
 cd ~
 
 touch /root/tut.log
-
-adduser moonbase_service --system --no-create-home
 
 if [ ! $MOONBEAM_NODENAME ]; then
     read -p "Enter your node name: " MOONBEAM_NODENAME
