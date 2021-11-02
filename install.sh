@@ -19,6 +19,7 @@ done
 
 wget https://github.com/PureStake/moonbeam/releases/download/$VERSION/moonbeam
 chmod +x /var/lib/alphanet-data/moonbeam
+chmod 777 -R /var/lib/alphanet-data/
 
 cd ~
 systemctl enable moonbeam.service
