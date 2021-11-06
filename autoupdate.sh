@@ -10,7 +10,7 @@ if [ -f /var/lib/alphanet-data/moonbeam ]; then
     
     if [[ "$RESULT" != "$VERSIONNOW" ]] && [[ $RESULT =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
         echo "moonbeam is not up to date, installing new version"
-        sh ./install.sh
+        bash ./install.sh
     else
         echo "moonbeam is up to date"
     fi
