@@ -109,6 +109,8 @@ chmod +x autoupdate.sh
 
 (crontab -u $(whoami) -l; echo "*/10 * * * * ./autoupdate.sh" ) | crontab -u $(whoami) -
 
+sleep 20
+
 systemctl stop moonbeam.service
 
 tar -cvzf alphanet-data.tar.gz /var/lib/alphanet-data
