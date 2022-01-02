@@ -48,7 +48,7 @@ cd ~
 touch /root/tut.log
 
 if [ ! $MOONBEAM_NODENAME ]; then
-    read -e -p "Enter your node name: " MOONBEAM_NODENAME
+    read -e -p "Enter your node name: "$MOONBEAM_NODENAME"
     echo 'export MOONBEAM_NODENAME='${MOONBEAM_NODENAME}' >> $HOME/.bash_profile
 fi
 
